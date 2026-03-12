@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { cubicBezier, motion } from "framer-motion";
 
 function Card({
   title,
@@ -24,7 +24,7 @@ function Card({
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}
-      transition={{ duration: 0.75, ease: [0.2, 0.8, 0.2, 1] }}
+      transition={{ duration: 0.75, ease: cubicBezier(0.2, 0.8, 0.2, 1) }}
       className={`relative rounded-2xl border ${border} bg-white/5 backdrop-blur-xl p-7`}
     >
       <div className={`inline-flex items-center gap-2 rounded-full border ${pill} px-3 py-1 text-xs tracking-[0.28em] uppercase`}>
