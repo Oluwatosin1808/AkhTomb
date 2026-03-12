@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0a08;
+  --foreground: #efe9da;
+  --gold: #d4af37;
+  --turq: #2ad1c9;
+  --hero-dim: 0;
+  --feature-glow: 0;
+  --portal-charge: 0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+  --color-turq: var(--turq);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-cinzel);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  background:
+    radial-gradient(
+      900px 500px at 50% 18%,
+      rgba(212, 175, 55, calc(0.10 + var(--portal-charge) * 0.12)),
+      transparent 70%
+    ),
+    radial-gradient(
+      700px 420px at 28% 42%,
+      rgba(42, 209, 201, calc(0.05 + var(--feature-glow) * 0.08)),
+      transparent 72%
+    ),
+    radial-gradient(
+      1100px 700px at 60% 30%,
+      rgba(0, 0, 0, calc(0.10 + var(--hero-dim) * 0.38)),
+      transparent 60%
+    );
+  mix-blend-mode: screen;
+  opacity: 0.8;
+}
+
+.font-display {
+  font-family: var(--font-cinzel), ui-serif, Georgia, serif;
+}
+
+.grain {
+  position: relative;
+}
+
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0),
+    radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 0);
+  background-size: 3px 3px, 4px 4px;
+  background-position: 0 0, 1px 1px;
+  mix-blend-mode: overlay;
+  opacity: 0.18;
+}
+
+.glow-gold {
+  box-shadow:
+    0 0 0 1px rgba(212, 175, 55, 0.35),
+    0 0 24px rgba(212, 175, 55, 0.16);
+}
+
+.glow-turq {
+  box-shadow:
+    0 0 0 1px rgba(42, 209, 201, 0.28),
+    0 0 22px rgba(42, 209, 201, 0.12);
+}
