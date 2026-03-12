@@ -1,39 +1,17 @@
-"use client";
-
-import { useMemo, useRef } from "react";
-import { cubicBezier, motion, type Variants } from "framer-motion";
-import HeroScene from "@/components/HeroScene";
-import FloatingHieroglyphs from "@/components/FloatingHieroglyphs";
+import HeroSceneMount from "@/components/HeroSceneMount";
+import HieroSceneMount from "@/components/HieroSceneMount";
 import FeatureCards from "@/components/FeatureCards";
-import PortalCTA from "@/components/PortalCTA";
-import ScrollOrchestrator from "@/components/ScrollOrchestrator";
+import PortalSceneMount from "@/components/PortalSceneMount";
 
 export default function Home() {
-  const hieroProgress = useRef(0);
-
-  const headline = useMemo(
-    (): Variants => ({
-      hidden: { opacity: 0, y: 18, filter: "blur(10px)" },
-      show: {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        transition: { duration: 1.1, ease: cubicBezier(0.2, 0.8, 0.2, 1) },
-      },
-    }),
-    [],
-  );
-
   return (
     <div className="grain min-h-screen bg-background text-foreground">
-      <ScrollOrchestrator hieroProgress={hieroProgress} />
-
       <section
         data-section="hero"
         className="relative h-[100svh] overflow-hidden"
       >
         <div data-scene="hero" className="absolute inset-0">
-          <HeroScene />
+          <HeroSceneMount />
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-background" />
@@ -42,31 +20,17 @@ export default function Home() {
           data-ui="hero"
           className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-16 md:px-10 md:pb-24"
         >
-          <motion.h1
-            variants={headline}
-            initial="hidden"
-            animate="show"
-            className="font-display text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.95] tracking-[-0.02em] text-foreground"
-          >
+          <h1 className="reveal font-display text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.95] tracking-[-0.02em] text-foreground">
             Unearth the
             <span className="block text-gold [text-shadow:0_0_30px_rgba(212,175,55,0.18)]">
               Forbidden Signal
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.15,
-              duration: 0.9,
-              ease: cubicBezier(0.2, 0.8, 0.2, 1),
-            }}
-            className="mt-5 max-w-xl text-sm leading-7 text-foreground/70 md:text-base"
-          >
+          <p className="reveal reveal-delay mt-5 max-w-xl text-sm leading-7 text-foreground/70 md:text-base">
             A cinematic, scroll-driven artifact: drifting sand, glowing glyphs, and
             a sarcophagus suspended between dynasties and data.
-          </motion.p>
+          </p>
 
           <div className="mt-8 flex items-center gap-3 text-xs tracking-[0.32em] uppercase text-foreground/55">
             <span className="h-px w-10 bg-gold/40" />
@@ -80,7 +44,7 @@ export default function Home() {
         className="relative h-[110svh] overflow-hidden border-t border-gold/10"
       >
         <div data-scene="hiero" className="absolute inset-0">
-          <FloatingHieroglyphs progress={hieroProgress} />
+          <HieroSceneMount />
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/25 to-background" />
@@ -132,7 +96,7 @@ export default function Home() {
         className="relative h-[95svh] overflow-hidden border-t border-gold/10"
       >
         <div data-scene="cta" className="absolute inset-0">
-          <PortalCTA />
+          <PortalSceneMount />
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/35 to-background" />

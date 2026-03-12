@@ -1,15 +1,13 @@
-"use client";
-
-import { cubicBezier, motion } from "framer-motion";
-
 function Card({
   title,
   desc,
   accent,
+  revealDelayClass,
 }: {
   title: string;
   desc: string;
   accent: "gold" | "turq";
+  revealDelayClass?: string;
 }) {
   const border =
     accent === "gold" ? "border-gold/30 glow-gold" : "border-turq/25 glow-turq";
@@ -20,14 +18,12 @@ function Card({
       : "text-turq/95 border-turq/25";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.35 }}
-      transition={{ duration: 0.75, ease: cubicBezier(0.2, 0.8, 0.2, 1) }}
-      className={`relative rounded-2xl border ${border} bg-white/5 backdrop-blur-xl p-7`}
+    <div
+      className={`reveal ${revealDelayClass ?? ""} relative rounded-2xl border ${border} bg-white/5 backdrop-blur-xl p-7`}
     >
-      <div className={`inline-flex items-center gap-2 rounded-full border ${pill} px-3 py-1 text-xs tracking-[0.28em] uppercase`}>
+      <div
+        className={`inline-flex items-center gap-2 rounded-full border ${pill} px-3 py-1 text-xs tracking-[0.28em] uppercase`}
+      >
         {accent === "gold" ? "Glyph" : "Aether"}
       </div>
       <h3 className="mt-5 font-display text-2xl tracking-tight text-foreground">
@@ -38,7 +34,7 @@ function Card({
       <p className="mt-5 text-xs tracking-[0.22em] uppercase text-foreground/55">
         Unearth the signal
       </p>
-    </motion.div>
+    </div>
   );
 }
 
@@ -49,16 +45,19 @@ export default function FeatureCards() {
         title="Ancient Knowledge"
         desc="Scroll-revealed fragments of forgotten systems, encoded in floating glyphs and light." 
         accent="gold"
+        revealDelayClass=""
       />
       <Card
         title="Eternal Power"
         desc="Cinematic illumination, fog, and particles woven into a smooth 60fps ritual." 
         accent="turq"
+        revealDelayClass="reveal-delay"
       />
       <Card
         title="Hidden Secrets"
         desc="Subtle parallax, micro-motion, and portal-like transitions that feel unearthed, not built." 
         accent="gold"
+        revealDelayClass="reveal-delay"
       />
     </div>
   );
