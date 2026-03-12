@@ -13,6 +13,11 @@ export default function ScrollOrchestrator({
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    ScrollTrigger.config({
+      limitCallbacks: true,
+      ignoreMobileResize: true,
+    });
+
     const hero = document.querySelector<HTMLElement>("[data-section='hero']");
     const hiero = document.querySelector<HTMLElement>("[data-section='hiero']");
     const features = document.querySelector<HTMLElement>(
@@ -53,10 +58,12 @@ export default function ScrollOrchestrator({
           scrollTrigger: {
             trigger: hero,
             start: "top top",
-            end: "+=140%",
+            end: "+=110%",
             scrub: true,
             pin: true,
             pinSpacing: true,
+            anticipatePin: 1,
+            fastScrollEnd: true,
           },
         });
 
@@ -64,8 +71,8 @@ export default function ScrollOrchestrator({
           tl.to(
             heroUI,
             {
-              opacity: 0,
-              y: -60,
+              opacity: 0.12,
+              y: -28,
               ease: "none",
             },
             0,
@@ -76,8 +83,8 @@ export default function ScrollOrchestrator({
           tl.to(
             heroScene,
             {
-              opacity: 0,
-              scale: 0.98,
+              opacity: 0.35,
+              scale: 0.995,
               ease: "none",
             },
             0,
@@ -106,10 +113,12 @@ export default function ScrollOrchestrator({
           scrollTrigger: {
             trigger: hiero,
             start: "top top",
-            end: "+=160%",
+            end: "+=120%",
             scrub: true,
             pin: true,
             pinSpacing: true,
+            anticipatePin: 1,
+            fastScrollEnd: true,
           },
         });
 
@@ -123,8 +132,8 @@ export default function ScrollOrchestrator({
           tl.to(
             hieroUI,
             {
-              opacity: 0,
-              y: -40,
+              opacity: 0.15,
+              y: -22,
               ease: "none",
             },
             0.55,
@@ -140,7 +149,7 @@ export default function ScrollOrchestrator({
           );
           tl.to(
             hieroScene,
-            { opacity: 0, ease: "none" },
+            { opacity: 0.35, ease: "none" },
             0.62,
           );
         }
@@ -187,10 +196,12 @@ export default function ScrollOrchestrator({
           scrollTrigger: {
             trigger: cta,
             start: "top top",
-            end: "+=140%",
+            end: "+=110%",
             scrub: true,
             pin: true,
             pinSpacing: true,
+            anticipatePin: 1,
+            fastScrollEnd: true,
           },
         });
 

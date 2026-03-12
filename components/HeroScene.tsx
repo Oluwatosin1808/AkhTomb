@@ -92,7 +92,7 @@ export default function HeroScene() {
   return (
     <div className="absolute inset-0">
       <Canvas
-        dpr={[1, 1.75]}
+        dpr={[1, 1.35]}
         camera={{ position: [0, 0.5, 9.5], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
@@ -105,10 +105,10 @@ export default function HeroScene() {
         <pointLight position={[2, -1, 2]} intensity={0.9} color="#2ad1c9" />
 
         <Suspense fallback={null}>
-          <PostFX bloomIntensity={0.95} bloomLuminanceThreshold={0.14} />
+          <PostFX bloomIntensity={0.75} bloomLuminanceThreshold={0.16} />
           <LightRays />
           <Sarcophagus />
-          <ShaderSandParticles count={1700} radius={18} opacity={0.16} speed={0.35} />
+          <ShaderSandParticles count={1200} radius={18} opacity={0.14} speed={0.32} />
         </Suspense>
       </Canvas>
     </div>
