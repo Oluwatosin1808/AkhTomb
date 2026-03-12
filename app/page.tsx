@@ -32,11 +32,16 @@ export default function Home() {
         data-section="hero"
         className="relative h-[100svh] overflow-hidden"
       >
-        <HeroScene />
+        <div data-scene="hero" className="absolute inset-0">
+          <HeroScene />
+        </div>
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-background" />
 
-        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-16 md:px-10 md:pb-24">
+        <div
+          data-ui="hero"
+          className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-16 md:px-10 md:pb-24"
+        >
           <motion.h1
             variants={headline}
             initial="hidden"
@@ -74,11 +79,16 @@ export default function Home() {
         data-section="hiero"
         className="relative h-[110svh] overflow-hidden border-t border-gold/10"
       >
-        <FloatingHieroglyphs progress={hieroProgress} />
+        <div data-scene="hiero" className="absolute inset-0">
+          <FloatingHieroglyphs progress={hieroProgress} />
+        </div>
 
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/25 to-background" />
 
-        <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-20 md:px-10 md:pb-24">
+        <div
+          data-ui="hiero"
+          className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-20 md:px-10 md:pb-24"
+        >
           <div className="max-w-2xl">
             <h2 className="font-display text-4xl tracking-tight md:text-5xl">
               The Glyph Field
@@ -121,11 +131,16 @@ export default function Home() {
         data-section="cta"
         className="relative h-[95svh] overflow-hidden border-t border-gold/10"
       >
-        <PortalCTA />
+        <div data-scene="cta" className="absolute inset-0">
+          <PortalCTA />
+        </div>
 
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/35 to-background" />
 
-        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-20 md:px-10 md:pb-24">
+        <div
+          data-ui="cta"
+          className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-20 md:px-10 md:pb-24"
+        >
           <h2 className="font-display text-4xl tracking-tight md:text-5xl">
             Enter the Tomb
           </h2>

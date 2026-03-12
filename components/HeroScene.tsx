@@ -4,7 +4,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
-import SandParticles from "@/components/SandParticles";
+import PostFX from "@/components/PostFX";
+import ShaderSandParticles from "@/components/ShaderSandParticles";
 
 function Sarcophagus() {
   const group = useRef<THREE.Group>(null);
@@ -104,9 +105,10 @@ export default function HeroScene() {
         <pointLight position={[2, -1, 2]} intensity={0.9} color="#2ad1c9" />
 
         <Suspense fallback={null}>
+          <PostFX bloomIntensity={0.95} bloomLuminanceThreshold={0.14} />
           <LightRays />
           <Sarcophagus />
-          <SandParticles />
+          <ShaderSandParticles count={1700} radius={18} opacity={0.16} speed={0.35} />
         </Suspense>
       </Canvas>
     </div>

@@ -1,15 +1,17 @@
 "use client";
 
+import type { MutableRefObject } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
 import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
 import SandParticles from "@/components/SandParticles";
+import PostFX from "@/components/PostFX";
 
 function GlyphCloud({
   progress,
 }: {
-  progress: React.MutableRefObject<number>;
+  progress: MutableRefObject<number>;
 }) {
   const group = useRef<THREE.Group>(null);
 
@@ -84,7 +86,7 @@ function GlyphCloud({
 export default function FloatingHieroglyphs({
   progress,
 }: {
-  progress: React.MutableRefObject<number>;
+  progress: MutableRefObject<number>;
 }) {
   return (
     <div className="absolute inset-0">
@@ -102,6 +104,7 @@ export default function FloatingHieroglyphs({
         <pointLight position={[-2, -1, -2]} intensity={1.2} color="#d4af37" />
 
         <Suspense fallback={null}>
+          <PostFX bloomIntensity={0.9} bloomLuminanceThreshold={0.16} />
           <GlyphCloud progress={progress} />
           <SandParticles count={1300} radius={14} opacity={0.14} />
         </Suspense>

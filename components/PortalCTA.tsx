@@ -3,7 +3,9 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
-import SandParticles from "@/components/SandParticles";
+import PostFX from "@/components/PostFX";
+import ShaderPortal from "@/components/ShaderPortal";
+import ShaderSandParticles from "@/components/ShaderSandParticles";
 
 function PortalRing() {
   const ring = useRef<THREE.Mesh>(null);
@@ -33,32 +35,6 @@ function PortalRing() {
   );
 }
 
-function PortalGlow() {
-  const mesh = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    const m = mesh.current;
-    if (!m) return;
-    m.rotation.z = -t * 0.1;
-    (m.material as THREE.MeshBasicMaterial).opacity =
-      0.22 + Math.sin(t * 0.8) * 0.04;
-  });
-
-  return (
-    <mesh ref={mesh} position={[0, 0, -0.4]}>
-      <circleGeometry args={[3.1, 64]} />
-      <meshBasicMaterial
-        color="#d4af37"
-        transparent
-        opacity={0.22}
-        blending={THREE.AdditiveBlending}
-        depthWrite={false}
-      />
-    </mesh>
-  );
-}
-
 export default function PortalCTA() {
   return (
     <div className="absolute inset-0">
@@ -76,11 +52,12 @@ export default function PortalCTA() {
         <pointLight position={[2, -1, 3]} intensity={0.9} color="#2ad1c9" />
 
         <Suspense fallback={null}>
+          <PostFX bloomIntensity={1.1} bloomLuminanceThreshold={0.12} />
           <group>
-            <PortalGlow />
+            <ShaderPortal intensity={1.0} />
             <PortalRing />
           </group>
-          <SandParticles count={1400} radius={13} opacity={0.18} />
+          <ShaderSandParticles count={1600} radius={13} opacity={0.16} speed={0.45} />
         </Suspense>
       </Canvas>
     </div>
