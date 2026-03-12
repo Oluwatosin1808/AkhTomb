@@ -39,7 +39,7 @@ export default function PortalCTA() {
   return (
     <div className="absolute inset-0">
       <Canvas
-        dpr={[1, 1.35]}
+        dpr={[1, 1.75]}
         camera={{ position: [0, 0.2, 8], fov: 50 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
@@ -52,12 +52,12 @@ export default function PortalCTA() {
         <pointLight position={[2, -1, 3]} intensity={0.9} color="#2ad1c9" />
 
         <Suspense fallback={null}>
-          <PostFX bloomIntensity={0.85} bloomLuminanceThreshold={0.16} />
+          <PostFX bloomIntensity={1.1} bloomLuminanceThreshold={0.12} />
           <group>
             <ShaderPortal intensity={1.0} />
             <PortalRing />
           </group>
-          <ShaderSandParticles count={1100} radius={13} opacity={0.14} speed={0.4} />
+          <ShaderSandParticles count={1600} radius={13} opacity={0.16} speed={0.45} />
         </Suspense>
       </Canvas>
     </div>

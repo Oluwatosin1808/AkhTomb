@@ -91,7 +91,7 @@ export default function FloatingHieroglyphs({
   return (
     <div className="absolute inset-0">
       <Canvas
-        dpr={[1, 1.35]}
+        dpr={[1, 1.75]}
         camera={{ position: [0, 0.1, 9], fov: 48 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
@@ -104,7 +104,7 @@ export default function FloatingHieroglyphs({
         <pointLight position={[-2, -1, -2]} intensity={1.2} color="#d4af37" />
 
         <Suspense fallback={null}>
-          <PostFX bloomIntensity={0.7} bloomLuminanceThreshold={0.18} />
+          <PostFX bloomIntensity={0.9} bloomLuminanceThreshold={0.16} />
           <GlyphCloud progress={progress} />
           <SandParticles count={1300} radius={14} opacity={0.14} />
         </Suspense>

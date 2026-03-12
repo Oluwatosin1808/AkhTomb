@@ -10,7 +10,7 @@ export default function PostFX({
   bloomLuminanceThreshold?: number;
 }) {
   return (
-    <EffectComposer multisampling={0} resolutionScale={0.65}>
+    <EffectComposer multisampling={0}>
       <Bloom
         intensity={bloomIntensity}
         luminanceThreshold={bloomLuminanceThreshold}
