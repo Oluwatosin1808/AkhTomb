@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef } from "react";
-import { motion } from "framer-motion";
+import { cubicBezier, motion, type Variants } from "framer-motion";
 import HeroScene from "@/components/HeroScene";
 import FloatingHieroglyphs from "@/components/FloatingHieroglyphs";
 import FeatureCards from "@/components/FeatureCards";
@@ -12,13 +12,13 @@ export default function Home() {
   const hieroProgress = useRef(0);
 
   const headline = useMemo(
-    () => ({
+    (): Variants => ({
       hidden: { opacity: 0, y: 18, filter: "blur(10px)" },
       show: {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        transition: { duration: 1.1, ease: [0.2, 0.8, 0.2, 1] },
+        transition: { duration: 1.1, ease: cubicBezier(0.2, 0.8, 0.2, 1) },
       },
     }),
     [],
@@ -52,7 +52,11 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+            transition={{
+              delay: 0.15,
+              duration: 0.9,
+              ease: cubicBezier(0.2, 0.8, 0.2, 1),
+            }}
             className="mt-5 max-w-xl text-sm leading-7 text-foreground/70 md:text-base"
           >
             A cinematic, scroll-driven artifact: drifting sand, glowing glyphs, and

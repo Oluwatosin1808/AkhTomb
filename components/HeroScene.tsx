@@ -68,7 +68,8 @@ function LightRays() {
     const ray = rayRef.current;
     if (!ray) return;
     ray.rotation.z = t * 0.05;
-    ray.material.opacity = 0.16 + Math.sin(t * 0.7) * 0.02;
+    (ray.material as THREE.MeshBasicMaterial).opacity =
+      0.16 + Math.sin(t * 0.7) * 0.02;
   });
 
   return (
